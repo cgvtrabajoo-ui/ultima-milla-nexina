@@ -12,6 +12,7 @@ function App() {
   const [pedidos, setPedidos] = useState([])
   const [historico, setHistorico] = useState([])
   const [notificaciones, setNotificaciones] = useState([])
+  const [pinIngresado, setPinIngresado] = useState('')
 
   useEffect(() => {
     cargarDatos()
@@ -408,14 +409,29 @@ if (usuarioActivo === 'historico') {
 </button>
 
       {choferes.map(c => (
-        <div key={c.id} style={{ marginBottom: 10 }}>
-          <button onClick={() => setUsuarioActivo(c.id)}>
-            Chofer: {c.nombre}
-          </button>
-        </div>
-      ))}
-    </div>
-  )
-}
+  <div key={c.id} style={{ marginBottom: 15 }}>
+    <p><strong>{c.nombre}</strong></p>
+
+    <input
+      type="password"
+      placeholder="Ingresar PIN"
+      value={pinIngresado}
+      onChange={(e) => setPinIngresado(e.target.value)}
+    />
+
+    <br /><br />
+
+    <button onClick={() => {
+      if (pinIngresado === c.pin) {
+        setUsuarioActivo(c.id)
+        setPinIngresado('')
+      } else {
+        alert('PIN incorrecto')
+      }
+    }}>
+      Ingresar
+    </button>
+  </div>
+))}
 
 export default App
