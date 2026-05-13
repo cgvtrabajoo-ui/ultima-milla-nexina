@@ -408,30 +408,33 @@ if (usuarioActivo === 'historico') {
   Histórico de entregas
 </button>
 
-      {choferes.map(c => (
-  <div key={c.id} style={{ marginBottom: 15 }}>
-    <p><strong>{c.nombre}</strong></p>
+                  {choferes.map(c => (
+        <div key={c.id} style={{ marginBottom: 15 }}>
+          <p><strong>{c.nombre}</strong></p>
 
-    <input
-      type="password"
-      placeholder="Ingresar PIN"
-      value={pinIngresado}
-      onChange={(e) => setPinIngresado(e.target.value)}
-    />
+          <input
+            type="password"
+            placeholder="Ingresar PIN"
+            value={pinIngresado}
+            onChange={(e) => setPinIngresado(e.target.value)}
+          />
 
-    <br /><br />
+          <br /><br />
 
-    <button onClick={() => {
-      if (pinIngresado === c.pin) {
-        setUsuarioActivo(c.id)
-        setPinIngresado('')
-      } else {
-        alert('PIN incorrecto')
-      }
-    }}>
-      Ingresar
-    </button>
-  </div>
-))}
+          <button onClick={() => {
+            if (pinIngresado === c.pin) {
+              setUsuarioActivo(c.id)
+              setPinIngresado('')
+            } else {
+              alert('PIN incorrecto')
+            }
+          }}>
+            Ingresar
+          </button>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default App
